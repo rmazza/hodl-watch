@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --main-text-color: white;
+    --main-font-family:  Segoe UI,Helvetica,Arial;
+    --main-background-color: black;
+}
+
+body {
+    font-family: Segoe UI,Helvetica,Arial;
+    background-color: var(--main-background-color);
+    color: var(--main-text-color);
+}

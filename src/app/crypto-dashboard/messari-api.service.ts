@@ -65,8 +65,8 @@ export class MessariApiService {
         let httpParams: HttpParams | undefined;
 
         return this.get(`assets/${assetKey}/profile`, httpParams).pipe( 
-            map( (result) => {
-                return result.data;
+            map( (result: AssetProfileV2) => {
+                return result;
             })  
         );
     }

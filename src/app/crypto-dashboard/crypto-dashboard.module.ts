@@ -31,7 +31,8 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [
-        CryptoDashboardComponent
+        CryptoDashboardComponent,
+        CryptoViewerComponent
     ],
     imports: [
         CommonModule,
