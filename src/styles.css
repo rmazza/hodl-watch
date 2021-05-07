@@ -2,11 +2,27 @@
 :root {
     --main-text-color: white;
     --main-font-family:  Segoe UI,Helvetica,Arial;
-    --main-background-color: black;
+    --main-background-color: rgb(58, 58, 58);
 }
 
 body {
     font-family: Segoe UI,Helvetica,Arial;
     background-color: var(--main-background-color);
     color: var(--main-text-color);
+}
+
+button {
+    background-color: inherit;
+    border: 1px solid white;
+    padding: .5rem 2rem;
+    font-size: inherit;
+    color: inherit;
+}
+
+button:hover {
+    background-color: rgb(110, 110, 110);
+}
+
+button:active {
+    box-shadow: inset 0px 0px 4px black;
 }
