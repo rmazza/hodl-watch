@@ -6,3 +6,8 @@ export interface AssetsV2Params {
     withMetrics?: boolean,
     withProfiles?: boolean
 }
+
+export interface AssetProfileV2Params {
+    fields?: string,
+    asMarkdown?: boolean
+}

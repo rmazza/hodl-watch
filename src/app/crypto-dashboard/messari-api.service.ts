@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 // interfaces
-import { Datum } from './messari-api.interface';
-import { AssetsV2Params } from './messari-query-params.interface';
-import { AssetProfileV2 } from './messari-api.profile.interface';
+import { Datum } from './models/messari-api.interface';
+import { AssetProfileV2Params, AssetsV2Params } from './models/messari-query-params.interface';
+import { AssetProfileV2 } from './models/messari-api.profile.interface';
 
 const MESSARI_HOST: string = 'https://data.messari.io/';
 const MESSARI_API: string = 'api/v2/';
@@ -61,14 +61,16 @@ export class MessariApiService {
         );
     }
 
-    getAssetProfileV2(assetKey?: string, queryParams?: {fields: string, asMarkdown: boolean }): Observable<AssetProfileV2> {
-        let httpParams: HttpParams | undefined;
-
+    getAssetProfileV2(assetKey?: string, httpParams?: HttpParams): Observable<AssetProfileV2> {
         return this.get(`assets/${assetKey}/profile`, httpParams).pipe( 
             map( (result: AssetProfileV2) => {
                 return result;
             })  
         );
+    }
+
+    getAssetMarketData(assetKey?: string, httpParams?: HttpParams) {
+
     }
 
     private get(endpoint: string, params?: HttpParams): Observable<any> {

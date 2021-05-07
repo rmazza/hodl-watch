@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { MessariApiService } from '../../messari-api.service';
 
-import { Assets, Datum } from '../../messari-api.interface';
+import { Assets, Datum } from '../../models/messari-api.interface';
 import { Data, Router } from '@angular/router';
 import { Observable, interval } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { AssetProfileV2 } from '../../messari-api.profile.interface';
+import { AssetProfileV2 } from '../../models/messari-api.profile.interface';
 
 @Component({
     selector: 'crypto-dashboard',
