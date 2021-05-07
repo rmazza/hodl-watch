@@ -21,11 +21,11 @@ export class MessariApiService {
     )
     { }
 
-    // https://messari.io/api/docs#operation/Get%20all%20Assets%20V2
-    /**
+
+/**
  * Options used to construct an `HttpParams` instance.
  *
- * @publicApi
+ * @publicApi https://messari.io/api/docs#operation/Get%20all%20Assets%20V2
  */
     getAssetsV2(params?: AssetsV2Params): Observable<Datum[]> {
 
@@ -79,7 +79,6 @@ export class MessariApiService {
     }
 
     private get(endpoint: string, params?: HttpParams, useVersion1?: boolean): Observable<any> {
-        debugger;
         const headers = new HttpHeaders({
             'x-messari-api-key': API_KEY
         });

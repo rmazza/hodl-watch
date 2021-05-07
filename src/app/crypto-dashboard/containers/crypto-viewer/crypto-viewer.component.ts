@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { throwError } from 'rxjs'; 
+import { throwError, Subscription, interval } from 'rxjs'; 
 import { switchMap } from 'rxjs/operators';
 
 // interfaces
@@ -12,19 +12,22 @@ import { AssetMarketData, Data } from '../../models/messari-api.market-data.inte
     selector: 'crypto-viewer',
     styleUrls: ['crypto-viewer.component.css'],
     template: `
-        <button (click)="goBack()">Back</button>
-        <div *ngIf="coin" class="coin-profile">
+        <div class="coin-profile-container">
             <div>
-                <span class="coin-name">{{ coin?.name }}</span> 
-                <span class="coin-symbol">{{ coin?.symbol }}</span>
-                <span class="coin-price-usd"> {{ coin?.market_data?.price_usd | currency }}</span>
+                <button (click)="goBack()">Back</button>
+            </div>
+            <div *ngIf="coin" class="coin-profile">
+                <div>
+                    <span class="coin-name">{{ coin?.name }}</span> 
+                    <span class="coin-symbol">{{ coin?.symbol }}</span>
+                    <span class="coin-price"> {{ coin?.market_data?.price_usd | currency }}</span>
+                </div>
             </div>
         </div>
     `
 })
-export class CryptoViewerComponent implements OnInit {
-    coin: Data | undefined;
-
+export class CryptoViewerComponent implements OnInit, OnDestroy {
+    private subscriptions: Subscription = new Subscription();
     private get initialFields() {
         return [ 
             'id',
@@ -32,7 +35,14 @@ export class CryptoViewerComponent implements OnInit {
             'name',
             'market_data/price_usd'
         ]
+    };
+    private get updatedPriceFields() {
+        return [
+            'id',
+            'market_data/price_usd'
+        ]
     }
+    coin: Data | undefined;
 
     constructor(
         private router: Router,
@@ -43,7 +53,7 @@ export class CryptoViewerComponent implements OnInit {
         const httpParams: HttpParams = new HttpParams();
         httpParams.set('fields', this.initialFields.join(','));
 
-        this.route.params
+        this.subscriptions.add(this.route.params
             .pipe(
                 switchMap((params: Params) => {
                     if (params) {
@@ -54,10 +64,28 @@ export class CryptoViewerComponent implements OnInit {
             )
             .subscribe( (data: AssetMarketData) => {
                 this.coin = data.data;
-            })
+            }));
+    }
+
+    ngAfterViewInit() {
+        const httpParams: HttpParams = new HttpParams();
+        httpParams.set('fields', this.updatedPriceFields.join(','));
+
+        const updatedPriceSub$ = interval(3000).pipe(
+            switchMap(() => this.apiService.getAssetMarketData(this.coin?.id, httpParams))
+        )
+        .subscribe((data: AssetMarketData) => {
+            this.coin = Object.assign({}, this.coin, data.data);
+        });
+
+        this.subscriptions.add(updatedPriceSub$);
     }
 
     goBack() {
         this.router.navigate(['/dashboard']);
+    }
+
+    ngOnDestroy() {
+        this.subscriptions.unsubscribe();
     }
 }
