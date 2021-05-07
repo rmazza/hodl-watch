@@ -7,9 +7,10 @@ import { map } from 'rxjs/operators';
 import { Datum } from './models/messari-api.interface';
 import { AssetProfileV2Params, AssetsV2Params } from './models/messari-query-params.interface';
 import { AssetProfileV2 } from './models/messari-api.profile.interface';
+import { AssetMarketData } from './models/messari-api.market-data.interface';
 
 const MESSARI_HOST: string = 'https://data.messari.io/';
-const MESSARI_API: string = 'api/v2/';
+const MESSARI_API: string = 'api/';
 const API_KEY: string = '50cc2051-2d44-49da-bd80-038e25cabb45';
 
 @Injectable()
@@ -69,12 +70,16 @@ export class MessariApiService {
         );
     }
 
-    getAssetMarketData(assetKey?: string, httpParams?: HttpParams) {
-
+    getAssetMarketData(assetKey?: string, httpParams?: HttpParams): Observable<AssetMarketData> {
+        return this.get(`assets/${assetKey}/metrics/market-data`, httpParams, true).pipe( 
+            map( (result: AssetMarketData) => {
+                return result;
+            })  
+        );
     }
 
-    private get(endpoint: string, params?: HttpParams): Observable<any> {
-
+    private get(endpoint: string, params?: HttpParams, useVersion1?: boolean): Observable<any> {
+        debugger;
         const headers = new HttpHeaders({
             'x-messari-api-key': API_KEY
         });
@@ -84,7 +89,7 @@ export class MessariApiService {
             params: params
         };
 
-        return this.httpClient.get(`${MESSARI_HOST}${MESSARI_API}${endpoint}`, options);
+        return this.httpClient.get(`${MESSARI_HOST}${MESSARI_API}${useVersion1 ? 'v1' : 'v2'}/${endpoint}`, options);
     }
 }
 

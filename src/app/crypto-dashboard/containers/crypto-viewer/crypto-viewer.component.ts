@@ -5,8 +5,8 @@ import { throwError } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 // interfaces
-import { AssetProfileV2, Data } from '../../messari-api.profile.interface';
 import { MessariApiService } from '../../messari-api.service';
+import { AssetMarketData, Data } from '../../models/messari-api.market-data.interface';
 
 @Component({
     selector: 'crypto-viewer',
@@ -17,6 +17,7 @@ import { MessariApiService } from '../../messari-api.service';
             <div>
                 <span class="coin-name">{{ coin?.name }}</span> 
                 <span class="coin-symbol">{{ coin?.symbol }}</span>
+                <span class="coin-price-usd"> {{ coin?.market_data?.price_usd | currency }}</span>
             </div>
         </div>
     `
@@ -28,7 +29,8 @@ export class CryptoViewerComponent implements OnInit {
         return [ 
             'id',
             'symbol', 
-            'name'
+            'name',
+            'market_data/price_usd'
         ]
     }
 
@@ -45,12 +47,12 @@ export class CryptoViewerComponent implements OnInit {
             .pipe(
                 switchMap((params: Params) => {
                     if (params) {
-                        return this.apiService.getAssetProfileV2(params.id, httpParams);
+                        return this.apiService.getAssetMarketData(params.id, httpParams);
                     }
                     return throwError('No id present');
                 })
             )
-            .subscribe( (data: AssetProfileV2) => {
+            .subscribe( (data: AssetMarketData) => {
                 this.coin = data.data;
             })
     }

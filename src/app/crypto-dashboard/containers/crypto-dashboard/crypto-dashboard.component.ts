@@ -106,19 +106,18 @@ export class CryptoDashboardComponent implements OnInit {
      }
 
      nextPage() {
-         this.currentPage++;
-        //  this.coins = this.callAPI();
         this.callAPI()
         .subscribe( (data) => {
             this.coins = data;
+            this.currentPage++;
         })
      }
 
      previousPage() {
-        this.currentPage--;
         this.callAPI()
         .subscribe( (data) => {
             this.coins = data;
+            this.currentPage--;
         })
      }
 
