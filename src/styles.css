@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: Segoe UI,Helvetica,Arial;
+    font-family: var(--main-font-family);
     background-color: var(--main-background-color);
     color: var(--main-text-color);
 }
