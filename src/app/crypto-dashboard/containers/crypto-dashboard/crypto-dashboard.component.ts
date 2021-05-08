@@ -13,6 +13,7 @@ import { AssetProfileV2 } from '../../models/messari-api.profile.interface';
     styleUrls: ['crypto-dashboard.component.css'],
     template: `
         <div class="app">
+            <h1>Trakr</h1>
             <div *ngIf="coins" class="coins-container">
                 <div class='coin-headers'>
                     <div></div>
