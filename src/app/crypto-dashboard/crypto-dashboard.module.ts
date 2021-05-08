@@ -6,9 +6,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 // containers
 import { CryptoDashboardComponent } from './containers/crypto-dashboard/crypto-dashboard.component';
-import { CryptoViewerComponent } from './containers/crypto-viewer/crypto-viewer.component';
 
 // components
+import { CryptoViewerComponent } from './components/crypto-viewer/crypto-viewer.component';
+import { CryptoListComponent } from './components/crypto-list/crypto-list.component';
 
 // services
 import { MessariApiService } from './messari-api.service';
@@ -16,10 +17,11 @@ import { MessariApiService } from './messari-api.service';
 const routes: Routes = [
     {
         path: 'dashboard',
+        component: CryptoDashboardComponent,
         children: [
             {
                 path: '',
-                component: CryptoDashboardComponent
+                component: CryptoListComponent
             }, 
             {
                 path: ':id',
@@ -32,7 +34,8 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         CryptoDashboardComponent,
-        CryptoViewerComponent
+        CryptoViewerComponent,
+        CryptoListComponent
     ],
     imports: [
         CommonModule,
@@ -41,6 +44,9 @@ const routes: Routes = [
     ],
     providers: [
         MessariApiService
+    ],
+    exports: [
+
     ]
 })
 export class CryptoDashboardModule { }

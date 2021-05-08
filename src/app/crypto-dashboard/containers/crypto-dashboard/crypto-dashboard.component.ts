@@ -1,18 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MessariApiService } from '../../messari-api.service';
-
-import { Assets, Datum } from '../../models/messari-api.interface';
-import { Data, Router } from '@angular/router';
-import { Observable, interval } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { AssetProfileV2 } from '../../models/messari-api.profile.interface';
-
 @Component({
     selector: 'crypto-dashboard',
     styleUrls: ['crypto-dashboard.component.css'],
     template: `
         <div class="app">
+<<<<<<< HEAD
             <h1>Trakr</h1>
             <div *ngIf="coins" class="coins-container">
                 <div class='coin-headers'>
@@ -60,77 +53,27 @@ import { AssetProfileV2 } from '../../models/messari-api.profile.interface';
                     Current Page: {{ currentPage }}
                     <button (click)="nextPage()">Next</button>
                 </div>
+=======
+            <div class="coin-header">
+                <h3>Trakr</h3>
+            </div>
+            <div class="coin-main">
+                <router-outlet></router-outlet>
+            </div>
+            <div class="coin-news">
+>>>>>>> f9b6c03... save
             </div>
         </div>
     `
 })
 export class CryptoDashboardComponent implements OnInit {
   
-    // coins: Observable<Datum[]> | undefined;
-    coins: Datum[] | undefined;
-    currentPage: number = 1;
-
-    private get fields() {
-        return [ 
-            'id',
-            'symbol', 
-            'name', 
-            'metrics/market_data/price_usd',
-            'metrics/market_data/percent_change_usd_last_1_hour',
-            'metrics/market_data/percent_change_usd_last_24_hours'
-
-        ]
-    }
+    // coins: Observable<Datum[]> | undefined
 
     constructor(
-        private apiService: MessariApiService,
-        private router: Router
+
     ) { }
 
     ngOnInit() {
-        // this.coins = interval(3000)
-        // .pipe(
-        //     switchMap(() => this.callAPI())
-        // )
-        // interval(3000)
-        //     .pipe(
-        //         switchMap(() => this.callAPI())
-        //     )
-        //     .subscribe( (data) => {
-        //         this.coins = data;
-        //     })
-
-            this.callAPI()
-            .subscribe( (data) => {
-                this.coins = data;
-            })
-     }
-
-     nextPage() {
-        this.callAPI()
-        .subscribe( (data) => {
-            this.coins = data;
-            this.currentPage++;
-        })
-     }
-
-     previousPage() {
-        this.callAPI()
-        .subscribe( (data) => {
-            this.coins = data;
-            this.currentPage--;
-        })
-     }
-
-     callAPI(): Observable<Datum[]> {
-        return this.apiService
-            .getAssetsV2({
-                page: this.currentPage,
-                fields: this.fields.join(',')
-            });
-     }
-
-     handleView(id: string) {
-        this.router.navigate(['/dashboard', id])
      }
 }
