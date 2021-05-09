@@ -10,6 +10,7 @@ import { CryptoDashboardComponent } from './containers/crypto-dashboard/crypto-d
 // components
 import { CryptoViewerComponent } from './components/crypto-viewer/crypto-viewer.component';
 import { CryptoListComponent } from './components/crypto-list/crypto-list.component';
+import { CryptoNewsComponent } from './components/crypto-news/crypto-news.component';
 
 // services
 import { MessariApiService } from './messari-api.service';
@@ -35,7 +36,8 @@ const routes: Routes = [
     declarations: [
         CryptoDashboardComponent,
         CryptoViewerComponent,
-        CryptoListComponent
+        CryptoListComponent,
+        CryptoNewsComponent
     ],
     imports: [
         CommonModule,

@@ -3,15 +3,18 @@
     grid-template-areas: 
         'header header'
         'main news';
-    grid-template-columns: 6fr 1fr;
+    grid-template-columns: 2fr 1fr;
 }
 
 .coin-header {
     grid-area: header;
+    border-bottom: 1px solid white;
 }
 
 .coin-main {
     grid-area: main;
+    border-right: 1px solid white;
+    padding: 1rem;
 }
 
 .coin-news {

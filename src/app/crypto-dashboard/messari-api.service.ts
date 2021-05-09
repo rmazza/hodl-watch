@@ -8,6 +8,7 @@ import { Datum } from './models/messari-api.interface';
 import { AssetProfileV2Params, AssetsV2Params } from './models/messari-query-params.interface';
 import { AssetProfileV2 } from './models/messari-api.profile.interface';
 import { AssetMarketData } from './models/messari-api.market-data.interface';
+import { News } from './models/messari-api.news.interface';
 
 const MESSARI_HOST: string = 'https://data.messari.io/';
 const MESSARI_API: string = 'api/';
@@ -73,6 +74,14 @@ export class MessariApiService {
     getAssetMarketData(assetKey?: string, httpParams?: HttpParams): Observable<AssetMarketData> {
         return this.get(`assets/${assetKey}/metrics/market-data`, httpParams, true).pipe( 
             map( (result: AssetMarketData) => {
+                return result;
+            })  
+        );
+    }
+
+    getNews(httpParams?: HttpParams): Observable<News> {
+        return this.get(`news`, httpParams, true).pipe( 
+            map( (result: News) => {
                 return result;
             })  
         );

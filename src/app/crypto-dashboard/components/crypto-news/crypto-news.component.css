@@ -1,0 +1,12 @@
+.news-card {
+    margin-bottom: 10px;
+}
+
+.news-container {
+    padding: 1rem;
+}
+
+.news-card-title > a {
+    text-decoration: none;
+    color: white;
+}

@@ -61,7 +61,11 @@ import { Component, OnInit } from '@angular/core';
                 <router-outlet></router-outlet>
             </div>
             <div class="coin-news">
+<<<<<<< HEAD
 >>>>>>> f9b6c03... save
+=======
+                <crypto-news></crypto-news>
+>>>>>>> a61ff6c... added news component
             </div>
         </div>
     `
