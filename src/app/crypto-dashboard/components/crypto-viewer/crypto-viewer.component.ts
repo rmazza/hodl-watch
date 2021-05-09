@@ -19,7 +19,7 @@ import { AssetMarketData, Data } from '../../models/messari-api.market-data.inte
             <div *ngIf="coin" class="coin-profile">
                 <div>
                     <span class="coin-name">{{ coin?.name }}</span> 
-                    <span class="coin-symbol">{{ coin?.symbol }}</span>
+                    <span class="coin-symbol">({{ coin?.symbol }})</span>
                     <span class="coin-price"> {{ coin?.market_data?.price_usd | currency }}</span>
                 </div>
             </div>

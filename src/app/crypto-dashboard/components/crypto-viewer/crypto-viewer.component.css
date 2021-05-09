@@ -5,3 +5,7 @@
 .coin-name, .coin-price {
     font-size: 2rem;
 }
+
+.coin-symbol {
+    padding-left: 1px;
+}

@@ -11,6 +11,10 @@
     border-bottom: 1px solid white;
 }
 
+.coin-header h1 {
+    padding-left: 1rem;
+}
+
 .coin-main {
     grid-area: main;
     border-right: 1px solid white;

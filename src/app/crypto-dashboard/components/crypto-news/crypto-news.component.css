@@ -1,11 +1,16 @@
 .news-card {
     margin-bottom: 10px;
+    border-bottom: 1px solid gray;
 }
 
 .news-container {
-    padding: 1rem;
+    overflow-y: scroll;
+    max-height: 50vw;
 }
 
+.news-card-title {
+    padding: 1rem;
+}
 .news-card-title > a {
     text-decoration: none;
     color: white;
