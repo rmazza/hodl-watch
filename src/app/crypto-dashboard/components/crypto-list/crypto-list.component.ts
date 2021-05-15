@@ -10,19 +10,18 @@ import { Datum } from '../../models/messari-api.interface';
     template: `
         <div *ngIf="coins" class="coins-container">
             <div class='coin-headers'>
-                <div></div>
-                <div class='coin-header'>Symbol</div>
+                <div class='coin-header flex-basis-10'>Symbol</div>
                 <div class='coin-header'>Name</div>
                 <div class='coin-header coin-price-usd'>Price</div>
                 <div class='coin-header coin-percent'>1hr change</div>
                 <div class='coin-header coin-percent'>24hr change</div>
             </div>
         <div *ngFor="let coin of coins" class='coin-row' (click)='handleView(coin.id)'>
-            <div class="coin-image">
-                <img src="https://messari.io/asset-images/{{coin.id}}/32.png?v=2" alt="">
-            </div>
-            <div class="coin-symbol">
-                {{ coin.symbol }}
+            <div class="coin-symbol flex-basis-10">
+                <div class="coin-image">
+                    <img src="https://messari.io/asset-images/{{coin.id}}/32.png?v=2" alt="">
+                </div>
+                <div>{{ coin.symbol }}</div>
             </div> 
             <div class="coin-name">
                 {{ coin.name }}

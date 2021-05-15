@@ -10,14 +10,8 @@
 }
 
 .coin-row, .coin-headers {
-    display: grid;
-    grid-template-columns: 4% 8% repeat(4, 1fr);
-    grid-template-rows: 2rem;
+    display: flex;
     align-items: center;
-}
-
-.coin-row > div, .coin-headers > div {
-    padding: .5rem;
 }
 
 .coin-row:hover {
@@ -30,11 +24,7 @@
 }
 
 .coin-image {
-    align-self: normal;
-}
-
-.coin-image > img {
-    height: 100%;
+    display: flex;
 }
 
 .coin-percent, .coin-price-usd {
@@ -48,7 +38,8 @@
 }
 
 .coin-symbol {
-    justify-self: center;
+    display: flex;
+    align-items: center;
 }
 
 .positive {
