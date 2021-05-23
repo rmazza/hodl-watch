@@ -1,9 +1,9 @@
 export interface Assets {
     status: Status;
-    data:   Datum[];
+    data:   AssetData[];
 }
 
-export interface Datum {
+export interface AssetData {
     id:      string;
     symbol:  string;
     name:    string;
@@ -18,12 +18,23 @@ export interface Metrics {
     name:                      string;
     slug:                      string;
     market_data:               MarketData;
+    marketcap:                 Marketcap;
     supply:                    MetricsSupply;
     blockchain_stats_24_hours: { [key: string]: number | null };
     all_time_high:             AllTimeHigh;
     developer_activity:        DeveloperActivity;
     roi_data:                  RoiData;
     misc_data:                 MiscData;
+}
+
+export interface Marketcap {
+    marketcap_dominance_percent?:           number;
+    current_marketcap_usd?:                 number;
+    y_2050_marketcap_usd?:                  number;
+    y_plus10_marketcap_usd?:                number;
+    liquid_marketcap_usd?:                  number;
+    realized_marketcap_usd?:                number;
+    volume_turnover_last_24_hours_percent?: number;
 }
 
 export interface AllTimeHigh {

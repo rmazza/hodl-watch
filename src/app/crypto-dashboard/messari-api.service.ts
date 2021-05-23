@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 // interfaces
-import { Datum } from './models/messari-api.interface';
+import { AssetData } from './models/messari-api.interface';
 import { AssetProfileV2Params, AssetsV2Params } from './models/messari-query-params.interface';
 import { AssetProfileV2 } from './models/messari-api.profile.interface';
 import { AssetMarketData } from './models/messari-api.market-data.interface';
@@ -28,7 +28,7 @@ export class MessariApiService {
  *
  * @publicApi https://messari.io/api/docs#operation/Get%20all%20Assets%20V2
  */
-    getAssetsV2(params?: AssetsV2Params): Observable<Datum[]> {
+    getAssetsV2(params?: AssetsV2Params): Observable<AssetData[]> {
 
         let httpParams: HttpParams | undefined;
 

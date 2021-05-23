@@ -1,9 +1,9 @@
 export interface AssetProfileV2 {
     status?: Status;
-    data?:   Data;
+    data?:   ProfileData;
 }
 
-export interface Data {
+export interface ProfileData {
     id:                      string;
     symbol?:                  string;
     name?:                    string;
