@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-// import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+
+import { IconsModule } from '../icons/icons.module';
+
 
 // containers
 import { CryptoDashboardComponent } from './containers/crypto-dashboard/crypto-dashboard.component';
@@ -42,7 +44,8 @@ const routes: Routes = [
     imports: [
         CommonModule,
         HttpClientModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        IconsModule
     ],
     providers: [
         MessariApiService

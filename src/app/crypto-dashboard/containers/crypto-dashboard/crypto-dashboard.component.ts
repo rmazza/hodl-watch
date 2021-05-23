@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
     template: `
         <div class="app">
             <div class="coin-header">
-                <h1>Trakr</h1>
+                <div class="logo">Trakr</div>
+                <div class="powered-by">Powered by Messari</div>
             </div>
             <div class="coin-main">
                 <router-outlet></router-outlet>

@@ -1,12 +1,15 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { throwError, Subscription, interval } from 'rxjs'; 
+import { throwError, Subscription, interval, forkJoin } from 'rxjs'; 
 import { switchMap } from 'rxjs/operators';
 
 // interfaces
-import { MessariApiService } from '../../messari-api.service';
 import { AssetMarketData, Data } from '../../models/messari-api.market-data.interface';
+import { ProfileData } from '../../models/messari-api.profile.interface';
+
+// services
+import { MessariApiService } from '../../messari-api.service';
 
 @Component({
     selector: 'crypto-viewer',
@@ -22,6 +25,7 @@ import { AssetMarketData, Data } from '../../models/messari-api.market-data.inte
                     <span class="coin-symbol">({{ coin?.symbol }})</span>
                     <span class="coin-price"> {{ coin?.market_data?.price_usd | currency }}</span>
                 </div>
+                <div [innerHTML]="profile?.profile?.general?.overview?.project_details"></div>
             </div>
         </div>
     `
@@ -36,13 +40,21 @@ export class CryptoViewerComponent implements OnInit, OnDestroy {
             'market_data/price_usd'
         ]
     };
+    private get profileFields() {
+        return [
+            'id',
+            'profile/general/overview'
+        ]  
+    };
     private get updatedPriceFields() {
         return [
             'id',
             'market_data/price_usd'
         ]
-    }
+    };
+
     coin: Data | undefined;
+    profile: ProfileData | undefined;
 
     constructor(
         private router: Router,
@@ -50,20 +62,27 @@ export class CryptoViewerComponent implements OnInit, OnDestroy {
         private apiService: MessariApiService) { }
     
     ngOnInit() {
-        const httpParams: HttpParams = new HttpParams();
-        httpParams.set('fields', this.initialFields.join(','));
+        const httpParamsMarketData: HttpParams = new HttpParams();
+        httpParamsMarketData.set('fields', this.initialFields.join(','));
+
+        const httpParamsProfile: HttpParams = new HttpParams();
+        httpParamsProfile.set('fields', this.profileFields.join(','));
 
         this.subscriptions.add(this.route.params
             .pipe(
                 switchMap((params: Params) => {
                     if (params) {
-                        return this.apiService.getAssetMarketData(params.id, httpParams);
+                        return forkJoin({
+                            marketData: this.apiService.getAssetMarketData(params.id, httpParamsMarketData),
+                            profileData: this.apiService.getAssetProfileV2(params.id, httpParamsProfile)
+                        })
                     }
                     return throwError('No id present');
                 })
             )
-            .subscribe( (data: AssetMarketData) => {
-                this.coin = data.data;
+            .subscribe( ({marketData, profileData}) => {
+                this.coin = marketData.data;
+                this.profile = profileData.data;
             }));
     }
 
