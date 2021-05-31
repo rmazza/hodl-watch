@@ -9,3 +9,12 @@
 .coin-symbol {
     padding-left: 1px;
 }
+
+.info-card {
+    display: grid;
+}
+
+.coin-profile-header {
+    display: flex;
+    align-items:baseline;
+}

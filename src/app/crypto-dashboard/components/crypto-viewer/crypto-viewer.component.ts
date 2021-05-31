@@ -17,15 +17,35 @@ import { MessariApiService } from '../../messari-api.service';
     template: `
         <div class="coin-profile-container">
             <div>
-                <button (click)="goBack()">Back</button>
+                <button (click)="goBack()"><i-feather name="arrow-left-circle"></i-feather></button>
             </div>
             <div *ngIf="coin" class="coin-profile">
-                <div>
-                    <span class="coin-name">{{ coin?.name }}</span> 
-                    <span class="coin-symbol">({{ coin?.symbol }})</span>
-                    <span class="coin-price"> {{ coin?.market_data?.price_usd | currency }}</span>
+                <div class="coin-profile-header">
+                    <div class="coin-name">{{ coin?.name }}</div> 
+                    <div class="coin-symbol">({{ coin?.symbol }})</div>
+                    <div class="coin-price"> 
+                        <div *ngIf="coinPrice > 1; else lessThanOne">
+                            {{ coinPrice | currency }}
+                        </div>
+                        <ng-template #lessThanOne>
+                            {{ coinPrice | currency:'USD':'symbol':'1.2-5' }}
+                        </ng-template>
+                    </div>
                 </div>
+                <br />
+                    <div>Max Supply: {{ profile?.profile?.economics?.consensus_and_emission?.supply?.max_supply | currency }}</div>
+                <br />
                 <div [innerHTML]="profile?.profile?.general?.overview?.project_details"></div>
+                <br />
+                <div class="info-card">
+
+                </div>
+                <div class="offical-links-secion">
+                    <div *ngFor="let link of profile?.profile?.general?.overview?.official_links">
+                        <a [href]="link?.link" target="_blank">{{ link?.name}}</a>
+                    </div>
+                </div>
+                <br />
             </div>
         </div>
     `
@@ -43,7 +63,8 @@ export class CryptoViewerComponent implements OnInit, OnDestroy {
     private get profileFields() {
         return [
             'id',
-            'profile/general/overview'
+            'profile/general/overview',
+            'profile/economics/consensus_and_emission/supply/max_supply'
         ]  
     };
     private get updatedPriceFields() {
@@ -53,9 +74,13 @@ export class CryptoViewerComponent implements OnInit, OnDestroy {
         ]
     };
 
+    get coinPrice() {
+        return this.coin?.market_data?.price_usd ?? 0;
+    }
+
     coin: Data | undefined;
     profile: ProfileData | undefined;
-
+    
     constructor(
         private router: Router,
         private route: ActivatedRoute,
@@ -102,6 +127,10 @@ export class CryptoViewerComponent implements OnInit, OnDestroy {
 
     goBack() {
         this.router.navigate(['/dashboard']);
+    }
+
+    getPercision() {
+
     }
 
     ngOnDestroy() {

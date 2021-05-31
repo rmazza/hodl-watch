@@ -42,6 +42,7 @@
 
 img {
     vertical-align: top;
+    width: 1.1rem;
 }
 
 .coin-row, .coin-headers {
@@ -54,8 +55,8 @@ img {
 }
 
 .coin-row:hover {
-    background-color: rgb(34, 34, 34);
     cursor: pointer;
+    border-bottom: 3px solid var(--color-text-link);
 }
 
 .coin-header {

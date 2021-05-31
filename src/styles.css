@@ -2,7 +2,8 @@
 :root {
     --main-text-color: white;
     --main-font-family:  Segoe UI,Helvetica,Arial;
-    --main-background-color: rgb(58, 58, 58);
+    --main-background-color: #22272e;
+    --color-text-link: #539bf5;
 }
 
 body {
@@ -27,4 +28,13 @@ button:hover {
 
 button:active {
     box-shadow: inset 0px 0px 4px black;
+}
+
+a {
+    color: var(--color-text-link);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

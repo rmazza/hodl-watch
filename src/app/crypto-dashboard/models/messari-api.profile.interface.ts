@@ -117,13 +117,13 @@ export interface Token {
     token_name?:          string;
     token_type?:          string;
     token_address?:       null;
-    block_explorers?:     BlockExplorer[];
+    block_explorers?:     OfficialLinks[];
     multitoken?:          any[];
     token_usage?:         string;
     token_usage_details?: string;
 }
 
-export interface BlockExplorer {
+export interface OfficialLinks {
     name?: string;
     link?: string;
 }
@@ -157,7 +157,7 @@ export interface GeneralOverview {
     sector?:          string;
     tags?:            string;
     project_details?: string;
-    official_links?:  BlockExplorer[];
+    official_links?:  OfficialLinks[];
 }
 
 export interface Regulation {
