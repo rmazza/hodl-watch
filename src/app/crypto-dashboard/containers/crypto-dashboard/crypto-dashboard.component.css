@@ -2,12 +2,11 @@
     .app {
         grid-template-areas: 
             'header'
-            'main'
-            'news' ;
+            'main';
         grid-template-columns: 1fr;
     }
 
-    .coin-main {
+    .main-content {
         padding: .5rem;
     }
 }
@@ -16,19 +15,13 @@
     .app {
         grid-template-areas: 
         'header header'
-        'main news';
-    grid-template-columns: 2fr 1fr;
+        'menu main';
+        grid-template-columns: 1fr 5fr;
     }
 
-    .coin-main {
-
-        border-right: 1px solid white;
+    .main-content {
         padding: 1rem;
     }
-}
-
-.coin-main {
-    grid-area: main;
 }
 
 .app {
@@ -40,14 +33,31 @@
     border-bottom: 1px solid white;
 }
 
-.coin-header h1 {
-    padding-left: 1rem;
+.main-menu {
+    grid-area: menu;
+    background-color: var(--secondary-background-color);
+    height: 100vh;
+    padding: 1rem 0;
 }
 
+.menu-link {
+    padding: .2rem;
+    cursor: pointer;
+    line-height: 2rem;
+}
 
+.active {
+    background-image: linear-gradient(to right, white 80%, var(--main-background-color) 99%);
+    color: black;
+    border-left: 2px solid var(--main-background-color);
+}
 
-.coin-news {
-    grid-area: news;
+.main-content {
+    grid-area: main;
+}
+
+.coin-header h1 {
+    padding-left: 1rem;
 }
 
 .logo {

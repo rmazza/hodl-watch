@@ -8,10 +8,6 @@ import { AppComponent } from './app.component';
 
 import { CryptoDashboardModule } from './crypto-dashboard/crypto-dashboard.module';
 
-const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
-  // { path: '**', component: NotFoundComponent },
-]
 
 @NgModule({
   declarations: [
@@ -20,7 +16,6 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
     CryptoDashboardModule
   ],
   providers: [],

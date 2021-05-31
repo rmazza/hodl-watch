@@ -20,17 +20,15 @@ import { MessariApiService } from './messari-api.service';
 const routes: Routes = [
     {
         path: 'dashboard',
-        component: CryptoDashboardComponent,
-        children: [
-            {
-                path: '',
-                component: CryptoListComponent
-            }, 
-            {
-                path: ':id',
-                component: CryptoViewerComponent
-            }
-        ]
+        component: CryptoListComponent
+    },
+    {
+        path: 'dashboard/:id',
+        component: CryptoViewerComponent
+    }, 
+    {
+        path: 'news',
+        component: CryptoNewsComponent
     }
 ];
 
@@ -44,14 +42,14 @@ const routes: Routes = [
     imports: [
         CommonModule,
         HttpClientModule,
-        RouterModule.forChild(routes),
+        RouterModule.forRoot(routes),
         IconsModule
     ],
     providers: [
         MessariApiService
     ],
     exports: [
-
+        CryptoDashboardComponent
     ]
 })
 export class CryptoDashboardModule { }

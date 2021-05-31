@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavLinks } from '../../models/nav-link.interface';
 
 @Component({
     selector: 'crypto-dashboard',
@@ -9,22 +10,39 @@ import { Component, OnInit } from '@angular/core';
                 <div class="logo">Trakr</div>
                 <div class="powered-by">Powered by Messari</div>
             </div>
-            <div class="coin-main">
+            <nav  class="main-menu">
+                <div *ngFor="let link of navLinks"
+                    class="menu-link"
+                    [routerLink]="link.url" 
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: link.exact }">
+                    {{ link.title }}
+                </div>
+            </nav>
+            <div class="main-content">
                 <router-outlet></router-outlet>
-            </div>
-            <div class="coin-news">
-                <crypto-news></crypto-news>
             </div>
         </div>
     `
 })
 export class CryptoDashboardComponent implements OnInit {
   
-    // coins: Observable<Datum[]> | undefined
+    navLinks: NavLinks[];
 
-    constructor(
-
-    ) { }
+    constructor() {
+        this.navLinks = [
+            {
+                title: 'Market Data',
+                url: 'dashboard',
+                exact: true
+            },
+            {
+                title: 'News',
+                url: 'news',
+                exact: true
+            }
+        ];
+     }
 
     ngOnInit() {
      }
