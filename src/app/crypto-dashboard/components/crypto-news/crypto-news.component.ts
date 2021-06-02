@@ -17,6 +17,8 @@ import { News, NewsData as NewsArticles } from '../../models/messari-api.news.in
                     <div class="new-card-author">
                         {{ newsArticle.author.name }}
                     </div>
+                    <div [innerHTML]="newsArticle.content" class="news-card-content">
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 .news-card {
     margin-bottom: 10px;
     border-bottom: 1px solid gray;
+    padding: 1rem;
 }
 
 .news-container {
@@ -9,9 +10,18 @@
 }
 
 .news-card-title {
-    padding: 1rem;
+  font-size: 1.5rem;
 }
+
 .news-card-title > a {
     text-decoration: none;
     color: white;
+}
+
+.new-card-author {
+    font-style: italic;
+}
+
+.news-card-content {
+    white-space: pre-line;
 }
