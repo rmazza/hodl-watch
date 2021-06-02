@@ -1,5 +1,6 @@
 export interface NavLinks {
     title: string,
     url: string,
-    exact: boolean
+    exact: boolean,
+    icon: string
 }

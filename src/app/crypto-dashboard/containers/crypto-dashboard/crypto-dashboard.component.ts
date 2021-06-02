@@ -16,7 +16,7 @@ import { NavLinks } from '../../models/nav-link.interface';
                     [routerLink]="link.url" 
                     routerLinkActive="active"
                     [routerLinkActiveOptions]="{ exact: link.exact }">
-                    {{ link.title }}
+                    <i-feather [name]="link.icon"></i-feather><span>{{ link.title }}</span>
                 </div>
             </nav>
             <div class="main-content">
@@ -34,12 +34,14 @@ export class CryptoDashboardComponent implements OnInit {
             {
                 title: 'Market Data',
                 url: 'dashboard',
-                exact: true
+                exact: false,
+                icon: 'bar-chart'
             },
             {
                 title: 'News',
                 url: 'news',
-                exact: true
+                exact: true,
+                icon: 'file-text'
             }
         ];
      }
