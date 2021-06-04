@@ -18,6 +18,7 @@ import { CryptoNewsComponent } from './components/crypto-news/crypto-news.compon
 import { MessariApiService } from './messari-api.service';
 
 const routes: Routes = [
+    { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
     {
         path: 'dashboard',
         component: CryptoListComponent
