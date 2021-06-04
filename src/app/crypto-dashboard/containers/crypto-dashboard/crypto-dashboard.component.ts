@@ -8,7 +8,7 @@ import { NavLinks } from '../../models/nav-link.interface';
         <div class="app">
             <div class="coin-header">
                 <div class="logo">Trakr</div>
-                <div class="powered-by">Powered by Messari</div>
+                <div class="powered-by">Powered by <a href="https://messari.io/" target="_blank">Messari</a></div>
             </div>
             <nav  class="main-menu">
                 <div *ngFor="let link of navLinks"
