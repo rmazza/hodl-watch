@@ -9,7 +9,6 @@ import { News, NewsData as NewsArticles } from '../../models/messari-api.news.in
     template: `
         <div class="news-container">
             <div *ngIf="showNewsBar">
-                <h3>News</h3>
                 <div *ngFor="let newsArticle of news"  class="news-card">
                     <div class="news-card-title">
                         <a [href]="newsArticle.url" target="_blank">{{ newsArticle.title }}</a>
