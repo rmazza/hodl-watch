@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { IconsModule } from '../icons/icons.module';
-
+import { MarkdownModule } from 'ngx-markdown';
 
 // containers
 import { CryptoDashboardComponent } from './containers/crypto-dashboard/crypto-dashboard.component';
@@ -44,6 +44,7 @@ const routes: Routes = [
         CommonModule,
         HttpClientModule,
         RouterModule.forRoot(routes),
+        MarkdownModule.forRoot(),
         IconsModule
     ],
     providers: [

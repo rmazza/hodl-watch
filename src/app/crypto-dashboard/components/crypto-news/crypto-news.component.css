@@ -5,8 +5,7 @@
 }
 
 .news-container {
-    overflow-y: scroll;
-    max-height: 100vh;
+    width: 100%;
 }
 
 .news-card-title {
