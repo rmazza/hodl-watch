@@ -79,9 +79,10 @@ export class MessariApiService {
         );
     }
 
-    getNews(httpParams?: HttpParams): Observable<News> {
-        return this.get(`news`, httpParams, true).pipe( 
+    getNews(params?: HttpParams): Observable<News> {
+        return this.get("news?as-markdown", params, true).pipe( 
             map( (result: News) => {
+                result.data.forEach(val => val.content = val.content.replace(/<a href/, '<a target="_blank" href'));
                 return result;
             })  
         );

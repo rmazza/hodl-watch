@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MessariApiService } from '../../messari-api.service';
@@ -8,17 +9,15 @@ import { News, NewsData as NewsArticles } from '../../models/messari-api.news.in
     styleUrls: ['crypto-news.component.css'],
     template: `
         <div class="news-container">
-            <div *ngIf="showNewsBar">
-                <h3>News</h3>
-                <div *ngFor="let newsArticle of news"  class="news-card">
-                    <div class="news-card-title">
+                <article *ngFor="let newsArticle of news"  class="news-card">
+                    <!-- <div class="news-card-title">
                         <a [href]="newsArticle.url" target="_blank">{{ newsArticle.title }}</a>
                     </div>
                     <div class="new-card-author">
                         {{ newsArticle.author.name }}
-                    </div>
-                </div>
-            </div>
+                    </div> -->
+                    <markdown [data]="newsArticle.content"></markdown>
+                </article>
         </div>
     `
 })
