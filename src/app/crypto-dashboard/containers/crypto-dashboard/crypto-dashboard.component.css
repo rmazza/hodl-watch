@@ -38,6 +38,7 @@
     background-color: var(--secondary-background-color);
     height: 100vh;
     padding: 1rem 0;
+    /* max-width: 200px; */
 }
 
 .menu-link {

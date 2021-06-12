@@ -1,7 +1,17 @@
+:host ::ng-deep .news-card img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .news-card {
     margin-bottom: 10px;
     border-bottom: 1px solid gray;
     padding: 1rem;
+    max-width: 800px;
+}
+
+.news-card li, .news-card p {
+    word-wrap: break-word;
 }
 
 .news-container {
