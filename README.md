@@ -1,5 +1,5 @@
 #Trakr Watch
 
-[Demo Link](https://clever-golick-5cf773.netlify.app/dashboard)
+[Trakr Watch](http://trakr.watch)
 
 Website for viewing crypto prices.  Currently being worked on.
