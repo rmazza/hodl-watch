@@ -4,10 +4,20 @@
 }
 
 .news-card {
-    margin-bottom: 10px;
     border-bottom: 1px solid gray;
     padding: 1rem;
     max-width: 800px;
+    height: 2.5rem;
+    overflow: hidden;
+    transition: height 2s;
+}
+
+.news-card .news-card-header:hover {
+    text-decoration: underline;
+}
+
+.expand {
+    height: max-content;
 }
 
 .news-card li, .news-card p {
@@ -27,10 +37,23 @@
     color: white;
 }
 
+.news-card-header {
+    cursor: pointer;
+}
+
 .new-card-author {
     font-style: italic;
 }
 
 .news-card-content {
     white-space: pre-line;
+}
+
+.news-card-footer-author {
+    font-weight: bold;
+}
+
+.news-card-footer-published-date {
+    margin-left: 10px;
+    font-style: italic;
 }
